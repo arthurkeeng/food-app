@@ -2,6 +2,8 @@
 import Details from "./FoodDetail"
 import food from "../data/foods"
 import { useState } from "react"
+
+const getCategories = ['all' , ...new Set(food.map(feed => feed.category))]
 const Foods = () => {
 
     const [foods ,setFoods] = useState(food)
@@ -21,16 +23,8 @@ const Foods = () => {
             </h4>
         </div>
         <div style={styles.divButtons} onClick={switchCategory}>
-            <button className="all">
-                All</button>
-            <button className="breakfast">
-                Breakfast</button>
-            <button className="lunch">
-                Lunch</button>
-            <button className="dinner">
-                Dinner
-            </button>
-
+            {
+                getCategory.map((category , index ) => <button className={category} key= {index}>{category}</button>)
         </div>
         <section className="foodDetails">
             {foods.map((food , index) =><Details {...food} key={index}/>)}
